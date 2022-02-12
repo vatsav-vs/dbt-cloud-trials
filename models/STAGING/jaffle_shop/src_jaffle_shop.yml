@@ -6,6 +6,7 @@ sources:
     schema: jaffle_shop
     tables:
       - name: customers
+        description: source for customer details in jaffle shop.
         columns:
           - name: id
             tests:
@@ -13,6 +14,7 @@ sources:
               - not_null
             
       - name: orders
+        description: source for order details in jaffle shop
         columns:
           - name: id
             tests:

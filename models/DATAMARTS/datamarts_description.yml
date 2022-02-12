@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: N_ORDERS
+    description: Fact table for Orders placed in jaffle shop.
+  - name: CUSTOMER_DIMENSION
+    description: FInal reporting table.
