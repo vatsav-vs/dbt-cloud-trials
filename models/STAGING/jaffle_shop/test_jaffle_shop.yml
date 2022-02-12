@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: ST_CUST
+    description: staging customers table, has only unique one customer per row
+    columns:
+      - name: customer_id
+        description: unique primary id for the table
+        tests:
+          - unique
+          - not_null
+  - name: ST_ORDERS
+    description: staging orders table
+    columns:
+      - name: order_id
+        description: unique primary id for the table
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - name: status
+        tests:
+          - accepted_values:
+              values:
+                - completed
+                - shipped
+                - returned
+                - return_pending
+                - placed
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('ST_CUST')
+              field: customer_id
+          
