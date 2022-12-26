@@ -1,5 +1,6 @@
 {{ config (
-    materialized="table"
+    materialized="table",
+    transient= false
 )}}
 with customers as (
 
@@ -7,14 +8,7 @@ with customers as (
 
 ),
 
-orders as (
 
-    select
-        *
-
-    from {{ref('ST_ORDERS')}}
-
-),
 
 customer_orders as (
 
@@ -24,7 +18,7 @@ customer_orders as (
         min(order_date) as first_order_date,
         max(order_date) as most_recent_order_date,
         count(order_id) as number_of_orders
-        from orders
+        from {{ ref('orders') }}
     group by 1
 
 ),
